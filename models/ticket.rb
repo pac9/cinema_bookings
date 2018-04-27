@@ -26,6 +26,13 @@ class Ticket
       @id = ticket['id'].to_i
     end
 
+    def update()
+      sql = "UPDATE tickets SET customer_id = $1, film_id = $2 WHERE id = $3"
+      values = [@customer_id, @film_id, @id]
+      SqlRunner.run(sql, values)
+    end
+
+
     def self.all()
       sql = "SELECT * FROM tickets"
       ticket_data = SqlRunner.run(sql)
@@ -36,5 +43,10 @@ class Ticket
       result = ticket_data.map { |ticket| Ticket.new(ticket) }
       return result
     end
+
+    def self.delete_all()
+       sql = "DELETE FROM tickets"
+       SqlRunner.run(sql)
+      end
 
 end

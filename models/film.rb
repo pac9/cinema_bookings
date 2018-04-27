@@ -24,6 +24,13 @@ attr_accessor :title, :price
     @id = film['id'].to_i
   end
 
+  def update()
+    sql = "UPDATE films SET title = $1, price = $2 WHERE id = $3"
+    values = [@title, @price, @id]
+    SqlRunner.run(sql, values)
+  end
+
+
   def self.all()
     sql = "SELECT * FROM films"
     film_details = SqlRunner.run(sql)
@@ -34,5 +41,11 @@ attr_accessor :title, :price
     result = film_details.map { |film| Film.new(film) }
     return result
   end
+
+  def self.delete_all()
+     sql = "DELETE FROM films"
+     SqlRunner.run(sql)
+    end
+
 
 end
