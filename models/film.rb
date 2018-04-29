@@ -56,7 +56,6 @@ attr_accessor :title, :price
   def self.delete_all()
      sql = "DELETE FROM films"
      SqlRunner.run(sql)
-    end
-
+  end
 
 end

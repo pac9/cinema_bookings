@@ -33,7 +33,7 @@ attr_accessor :name, :funds
       values = [@id]
       film_info = SqlRunner.run(sql, values)
       return Film.map_items(film_info)
-    end
+  end
 
   def update()
     sql = "UPDATE customers SET name = $1, funds = $2 WHERE id = $3"
@@ -55,7 +55,6 @@ attr_accessor :name, :funds
   def self.delete_all()
      sql = "DELETE FROM customers"
      SqlRunner.run(sql)
-    end
-
+  end
 
 end
